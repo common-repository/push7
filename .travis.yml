@@ -1,0 +1,18 @@
+language: php
+
+matrix:
+  include:
+    - php: '5.5.38'
+      dist: trusty
+      env: BUILD_DIST=trusty
+
+    - php: nightly
+      dist: trusty
+      env: BUILD_DIST=trusty
+
+script:
+- bash .scripts/syntax-check.sh
+- bash .scripts/version-check.sh
+
+after_success:
+- bash .scripts/deploy.sh
